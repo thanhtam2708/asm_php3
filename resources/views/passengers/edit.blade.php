@@ -22,7 +22,7 @@
             <div class="col-6">
                    <div class="form-group">
                     <label for="">Travel_time</label>
-                    <input type="datetime-local" name="travel_time" value="{{date('Y-m-d\TH:i', strtotime($item->travel_time))}}" class="form-control" placeholder="">
+                    <input type="datetime-local" name="travel_time" value="{{date('Y-m-d\TH:i', strtotime($model->travel_time))}}" class="form-control" placeholder="">
                 </div>
                 <div class="form-group">
                     <label for="">Avatar</label>

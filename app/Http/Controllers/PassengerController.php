@@ -50,6 +50,7 @@ class PassengerController extends Controller
     {
 
         $model = Passenger::find($id);
+        //dd($model->travel_time);
         if (!$model) {
             return back();
         }
