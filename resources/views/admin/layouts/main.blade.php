@@ -72,5 +72,12 @@
 <!-- jQuery -->
 @include('admin.layouts.script')
 @yield('page-script')
+
+<script>
+  const  role_id = document.querySelector("#role_id");
+  role_id.addEventListener('change', (e) => {
+    console.log('change: ', e.target.value)
+  })  
+</script>
 </body>
 </html>

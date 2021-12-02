@@ -25,7 +25,7 @@
                             <td>{{$item->travel_time}}</td>
                             <td>
                                 <a href="{{route('passenger.edit',['id'=>$item->id])}}" class="btn btn-warning">Edit</a>
-                                <a href="{{route('passenger.remove',['id'=>$item->id])}}" class="btn btn-danger">Remove</a>
+                                <a href="{{route('passenger.remove',['id'=>$item->id])}}" onclick="return confirm('Are you sure you want to delete this item?')" class="btn btn-danger">Remove</a>
                             </td>
                         </tr>
                     @endforeach

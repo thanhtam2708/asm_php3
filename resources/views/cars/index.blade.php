@@ -25,7 +25,7 @@
                 </td>
                 <td>
                     <a href="{{route('car.edit',['id'=>$item->id])}}" class="btn btn-warning">Edit</a>
-                    <a href="{{route('car.remove',['id'=>$item->id])}}" class="btn btn-danger">Remove</a>
+                    <a href="{{route('car.remove',['id'=>$item->id])}}" onclick="return confirm('Are you sure you want to delete this item?')" class="btn btn-danger">Remove</a>
                 </td>
             </tr>
         @endforeach

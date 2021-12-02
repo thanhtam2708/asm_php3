@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CarRequest;
 use App\Models\Car;
+use App\Models\Passenger;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -19,7 +21,7 @@ class CarController extends Controller
     {
         return view('cars.add');
     }
-    public function saveAdd(Request $request)
+    public function saveAdd(CarRequest $request)
     {
         $model = new Car();
         if ($request->hasFile('plate_image')) {
@@ -35,6 +37,10 @@ class CarController extends Controller
     public function remove($id)
     {
         $model = Car::find($id);
+        $passengers = Passenger::where('car_id', '=', $id)->get();
+        foreach ($passengers as $key => $value) {
+            $value->delete();
+        }
         if (!empty($model->plate_image)) {
             $imgPath = str_replace('storage/', 'public/', $model->plate_image);
             Storage::delete($imgPath);
