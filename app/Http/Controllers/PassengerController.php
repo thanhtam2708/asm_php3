@@ -26,9 +26,9 @@ class PassengerController extends Controller
     {
         $model = new Passenger();
         if ($request->hasFile('avatar')) {
-            $imgPath = $request->file('avatar')->store('public/passengers');
+            $imgPath = $request->file('avatar')->store('passengers');
             // dd($imgPath);
-            $imgPath = str_replace('public/', 'storage/', $imgPath);
+            $imgPath = str_replace('public/', '', $imgPath);
             $model->avatar = $imgPath;
         }
         $model->fill($request->all());
@@ -67,8 +67,8 @@ class PassengerController extends Controller
         if ($request->hasFile('avatar')) {
             $oldImg = str_replace('storage/', 'public/', $model->avatar);
             Storage::delete($oldImg);
-            $imgPath = $request->file('avatar')->store('public/passengers');
-            $imgPath = str_replace('public/', 'storage/', $imgPath);
+            $imgPath = $request->file('avatar')->store('passengers');
+            $imgPath = str_replace('public/', '', $imgPath);
             $model->avatar = $imgPath;
         }
         $model->fill($request->all());

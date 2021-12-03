@@ -31,9 +31,9 @@ class UserController extends Controller
     {
         $model = new User();
         if ($request->hasFile('avatar')) {
-            $imgPath = $request->file('avatar')->store('public/users');
+            $imgPath = $request->file('avatar')->store('users');
             // dd($imgPath);
-            $imgPath = str_replace('public/', 'storage/', $imgPath);
+            $imgPath = str_replace('public/', '', $imgPath);
             $model->avatar = $imgPath;
         }
         $model->fill($request->all());
@@ -71,8 +71,8 @@ class UserController extends Controller
         if ($request->hasFile('avatar')) {
             $oldImg = str_replace('storage/', 'public/', $model->avatar);
             Storage::delete($oldImg);
-            $imgPath = $request->file('avatar')->store('public/users');
-            $imgPath = str_replace('public/', 'storage/', $imgPath);
+            $imgPath = $request->file('avatar')->store('users');
+            $imgPath = str_replace('public/', '', $imgPath);
             $model->avatar = $imgPath;
         }
         $model->fill($request->all());

@@ -25,9 +25,9 @@ class CarController extends Controller
     {
         $model = new Car();
         if ($request->hasFile('plate_image')) {
-            $imgPath = $request->file('plate_image')->store('public/cars');
+            $imgPath = $request->file('plate_image')->store('cars');
             // dd($imgPath);
-            $imgPath = str_replace('public/', 'storage/', $imgPath);
+            $imgPath = str_replace('public/', '', $imgPath);
             $model->plate_image = $imgPath;
         }
         $model->fill($request->all());
@@ -66,8 +66,8 @@ class CarController extends Controller
         if ($request->hasFile('plate_image')) {
             $oldImg = str_replace('storage/', 'public/', $model->plate_image);
             Storage::delete($oldImg);
-            $imgPath = $request->file('plate_image')->store('public/cars');
-            $imgPath = str_replace('public/', 'storage/', $imgPath);
+            $imgPath = $request->file('plate_image')->store('cars');
+            $imgPath = str_replace('public/', '', $imgPath);
             $model->plate_image = $imgPath;
         }
         $model->fill($request->all());
