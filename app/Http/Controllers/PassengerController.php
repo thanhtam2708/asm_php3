@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PassengerRequest;
 use App\Models\Car;
 use App\Models\Passenger;
 use Illuminate\Http\Request;
@@ -21,7 +22,7 @@ class PassengerController extends Controller
         $cars = Car::all();
         return view('passengers.add', compact('cars'));
     }
-    public function saveAdd(Request $request)
+    public function saveAdd(PassengerRequest $request)
     {
         $model = new Passenger();
         if ($request->hasFile('avatar')) {
@@ -57,7 +58,7 @@ class PassengerController extends Controller
         $cars = Car::all();
         return view('passengers.edit', compact('model', 'cars'));
     }
-    public function saveEdit(Request $request, $id)
+    public function saveEdit(PassengerRequest $request, $id)
     {
         $model = Passenger::find($id);
         if (!$model) {

@@ -57,7 +57,7 @@ class CarController extends Controller
         }
         return view('cars.edit', compact('model'));
     }
-    public function saveEdit(Request $request, $id)
+    public function saveEdit(CarRequest $request, $id)
     {
         $model = Car::find($id);
         if (!$model) {

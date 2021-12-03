@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class PassengerRequest extends FormRequest
+class EditUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,10 +27,14 @@ class PassengerRequest extends FormRequest
         $requestRule = [
             'name' => [
                 'required',
-                Rule::unique('passengers')->ignore($this->id)
+                Rule::unique('users')->ignore($this->id)
             ],
-            'avatar' => 'mimes:jpg,jpeg,png',
-            'travel_time' => 'required',
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('users')->ignore($this->id)
+            ],
+            'avatar' => 'mimes:jpg,jpeg,png'
         ];
         if ($this->id == null) {
             $requestRule['avatar'] = "required|" . $requestRule['avatar'];
@@ -42,9 +46,11 @@ class PassengerRequest extends FormRequest
         return [
             'name.required' => 'This is a required field',
             'name.unique' => 'Name already exist',
+            'email.required' => 'This is a required field',
+            'email.email' => 'Enter email in correct format',
+            'email.unique' => 'Email already exist',
             'avatar.required' => 'This is a required field',
             'avatar.mimes' => 'Choose the right image format (jpg, jpeg, png)',
-            'travel_time.required' => 'This is a required field'
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CarRequest extends FormRequest
@@ -23,12 +24,19 @@ class CarRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'plate_number' => 'required|unique:cars',
+        $requestRule = [
+            'plate_number' => [
+                'required',
+                Rule::unique('cars')->ignore($this->id)
+            ],
             'owner' => 'required',
             'travel_fee' => 'required|min:0',
-            'plate_image' => 'required|mimes:jpg,jpeg,png',
+            'plate_image' => 'mimes:jpg,jpeg,png'
         ];
+        if ($this->id == null) {
+            $requestRule['plate_image'] = "required|" . $requestRule['plate_image'];
+        }
+        return $requestRule;
     }
     public function messages()
     {
@@ -37,6 +45,7 @@ class CarRequest extends FormRequest
             'plate_number.unique' => 'Plate number already exist',
             'owner.required' => 'This is a required field',
             'travel_fee.required' => 'This is a required field',
+            'travel_fee.min' => 'Travel fee >= 0',
             'plate_image.required' => 'This is a required field',
             'plate_image.mimes' => 'Choose the right image format (jpg, jpeg, png)'
         ];

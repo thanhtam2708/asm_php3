@@ -5,19 +5,28 @@
         <div class="row">
             <div class="col-6">
                 <div class="form-group">
-                  <label for="">Name</label>
-                  <input type="text" name="name" class="form-control" placeholder="">
+                    <label for="">Name</label>
+                    <input type="text" name="name" class="form-control" placeholder="">
                 </div>
+                @error('name')
+                    <p class="text-danger">{{$message}}</p>
+                @enderror
                 <div class="form-group">
                     <label for="">Email</label>
                     <input type="text" name="email" class="form-control" placeholder="">
                 </div>
+                @error('email')
+                    <p class="text-danger">{{$message}}</p>
+                @enderror
             </div>
             <div class="col-6">
                  <div class="form-group">
                     <label for="">Password</label>
                     <input type="text" name="password" class="form-control" placeholder="">
                 </div>
+                @error('password')
+                    <p class="text-danger">{{$message}}</p>
+                @enderror
                 <div class="form-group">
                     <label for="">Role</label>
                     <select name="role_id" id="" class="form-control">
@@ -32,6 +41,9 @@
                     <label for="">Avatar</label>
                     <input type="file" name="avatar" class="form-control" placeholder="">
                 </div>
+                @error('avatar')
+                    <p class="text-danger">{{$message}}</p>
+                @enderror
             </div>
                
             

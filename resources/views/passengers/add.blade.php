@@ -8,6 +8,9 @@
                   <label for="">Name</label>
                   <input type="text" name="name" class="form-control" placeholder="">
                 </div>
+                @error('name')
+                    <p class="text-danger">{{$message}}</p>
+                @enderror
                 <div class="form-group">
                     <label for="">Car</label>
                    <select name="car_id" id="" class="form-control">
@@ -22,10 +25,16 @@
                     <label for="">Avatar</label>
                     <input type="file" name="avatar" class="form-control" placeholder="">
                 </div>
+                @error('avatar')
+                    <p class="text-danger">{{$message}}</p>
+                @enderror
                 <div class="form-group">
                     <label for="">Travel_time</label>
                     <input type="datetime-local" name="travel_time" class="form-control" placeholder="">
                 </div>
+                @error('travel_time')
+                <p class="text-danger">{{$message}}</p>
+                @enderror
             </div>
             <div class="col-12 d-flex justify-content-end">
                 <br>

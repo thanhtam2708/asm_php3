@@ -5,13 +5,19 @@
         <div class="row">
             <div class="col-6">
                 <div class="form-group">
-                  <label for="">Name</label>
-                  <input type="text" name="name" value="{{$model->name}}" class="form-control" placeholder="">
+                    <label for="">Name</label>
+                    <input type="text" name="name" value="{{$model->name}}" class="form-control" placeholder="">
                 </div>
+                @error('name')
+                    <p class="text-danger">{{$message}}</p>
+                @enderror
                 <div class="form-group">
                     <label for="">Email</label>
                     <input type="text" name="email" class="form-control" value="{{$model->email}}" placeholder="">
                 </div>
+                @error('email')
+                    <p class="text-danger">{{$message}}</p>
+                @enderror
             </div>
             <div class="col-6">
                <div class="form-group">
@@ -19,6 +25,9 @@
                     <input type="file" name="avatar" value="{{$model->avatar}}" class="form-control" placeholder="">
                     <img src="{{asset($model->avatar)}}" alt="" width="100">
                 </div>
+                @error('avatar')
+                    <p class="text-danger">{{$message}}</p>
+                @enderror
             </div>
             <div class="col-12 d-flex justify-content-start">
                 <br>

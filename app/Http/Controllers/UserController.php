@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EditUserRequest;
+use App\Http\Requests\UserRequest;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -25,7 +27,7 @@ class UserController extends Controller
         $role = Role::all();
         return view('users.add', compact('role'));
     }
-    public function saveAdd(Request $request)
+    public function saveAdd(UserRequest $request)
     {
         $model = new User();
         if ($request->hasFile('avatar')) {
@@ -60,7 +62,7 @@ class UserController extends Controller
         }
         return view('users.edit', compact('model'));
     }
-    public function saveEdit(Request $request, $id)
+    public function saveEdit(EditUserRequest $request, $id)
     {
         $model = User::find($id);
         if (!$model) {
@@ -76,9 +78,5 @@ class UserController extends Controller
         $model->fill($request->all());
         $model->save();
         return redirect(route('user.index'));
-    }
-    public function saveRole($e)
-    {
-        echo "<script>console.log('Debug Objects: " . $e . "' );</script>";
     }
 }
