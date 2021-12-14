@@ -30,7 +30,7 @@ class PassengerRequest extends FormRequest
                 Rule::unique('passengers')->ignore($this->id)
             ],
             'avatar' => 'mimes:jpg,jpeg,png',
-            'travel_time' => 'required',
+            'travel_time' => 'required|after:tomorrow',
         ];
         if ($this->id == null) {
             $requestRule['avatar'] = "required|" . $requestRule['avatar'];
@@ -44,7 +44,8 @@ class PassengerRequest extends FormRequest
             'name.unique' => 'Name already exist',
             'avatar.required' => 'This is a required field',
             'avatar.mimes' => 'Choose the right image format (jpg, jpeg, png)',
-            'travel_time.required' => 'This is a required field'
+            'travel_time.required' => 'This is a required field',
+            'travel_time.after' => 'Choose a date in the future'
         ];
     }
 }

@@ -23,7 +23,7 @@
                     <img src="{{ asset($item->avatar) }}" alt="" width="100px">
                 </td>
                 <td>
-                    <form action="" method="post">
+                    {{-- <form action="" method="post">
                         <div class="row">
                             <div class="form-group">
                                 <select name="role_id" id="role_id" class="form-control">
@@ -37,12 +37,13 @@
                             </div>
                             <button class="btn">Save</button>
                         </div>
-                    </form>
-                    {{-- {{$item->role->name}} --}}
+                    </form> --}}
+                    {{$item->role->name}}
                 </td>
                 <td>
                     <a href="{{route('user.edit',['id'=>$item->id])}}" class="btn btn-warning">Edit</a>
                     <a href="{{route('user.remove',['id'=>$item->id])}}" onclick="return confirm('Are you sure you want to delete this item?')" class="btn btn-danger">Remove</a>
+                    <a href="{{route('user.editRole',['id'=>$item->id])}}"class="btn btn-success">Change Role</a>
                 </td>
             </tr>
         @endforeach

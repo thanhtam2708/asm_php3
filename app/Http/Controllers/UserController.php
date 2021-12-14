@@ -79,4 +79,28 @@ class UserController extends Controller
         $model->save();
         return redirect(route('user.index'));
     }
+
+    public function editRole($id)
+    {
+        $role = Role::all();
+        $model = User::find($id);
+        if (!$model) {
+            return back();
+        }
+        return view('users.editRole', compact('model', 'role'));
+    }
+    public function saveRole(Request $request, $id)
+    {
+        $model = User::find($id);
+        if (!$model) {
+            return back();
+        }
+        $model->fill($request->all());
+        $model->save();
+        return redirect(route('user.index'));
+    }
+    public function page403()
+    {
+        return view('users.403');
+    }
 }

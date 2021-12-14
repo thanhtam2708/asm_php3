@@ -6,14 +6,14 @@
             <div class="col-6">
                 <div class="form-group">
                     <label for="">Name</label>
-                    <input type="text" name="name" class="form-control" placeholder="">
+                    <input type="text" name="name" value="{{old('name')}}" class="form-control" placeholder="">
                 </div>
                 @error('name')
                     <p class="text-danger">{{$message}}</p>
                 @enderror
                 <div class="form-group">
                     <label for="">Email</label>
-                    <input type="text" name="email" class="form-control" placeholder="">
+                    <input type="text" name="email" value="{{old('email')}}" class="form-control" placeholder="">
                 </div>
                 @error('email')
                     <p class="text-danger">{{$message}}</p>
@@ -29,7 +29,7 @@
                 @enderror
                 <div class="form-group">
                     <label for="">Role</label>
-                    <select name="role_id" id="" class="form-control">
+                    <select name="role_id" id="" class="form-control" value="{{old('role_id')}}">
                         @foreach ($role as $item)
                               <option value="{{$item->id}}">{{$item->name}}</option>
                         @endforeach

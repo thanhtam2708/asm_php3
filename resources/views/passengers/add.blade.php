@@ -6,14 +6,14 @@
             <div class="col-6">
                 <div class="form-group">
                   <label for="">Name</label>
-                  <input type="text" name="name" class="form-control" placeholder="">
+                  <input type="text" name="name" value="{{old('name')}}" class="form-control" placeholder="">
                 </div>
                 @error('name')
                     <p class="text-danger">{{$message}}</p>
                 @enderror
                 <div class="form-group">
                     <label for="">Car</label>
-                   <select name="car_id" id="" class="form-control">
+                   <select name="car_id" id="" value="{{old('car_id')}}" class="form-control">
                        @foreach ($cars as $item)
                              <option value="{{$item->id}}">{{$item->owner}}</option>
                        @endforeach
@@ -23,14 +23,14 @@
             <div class="col-6">
                 <div class="form-group">
                     <label for="">Avatar</label>
-                    <input type="file" name="avatar" class="form-control" placeholder="">
+                    <input type="file" name="avatar" value="{{old('avatar')}}" class="form-control" placeholder="">
                 </div>
                 @error('avatar')
                     <p class="text-danger">{{$message}}</p>
                 @enderror
                 <div class="form-group">
                     <label for="">Travel_time</label>
-                    <input type="datetime-local" name="travel_time" class="form-control" placeholder="">
+                    <input type="datetime-local" name="travel_time" value="{{old('travel_time')}}" class="form-control" placeholder="">
                 </div>
                 @error('travel_time')
                 <p class="text-danger">{{$message}}</p>

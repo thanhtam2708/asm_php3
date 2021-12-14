@@ -54,6 +54,9 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
         Route::get('remove/{id}', [UserController::class, 'remove'])->name('user.remove')->middleware('admin-role');
 
+        Route::get('editRole/{id}', [UserController::class, 'editRole'])->name('user.editRole')->middleware('admin-role');
+        Route::post('editRole/{id}', [UserController::class, 'saveRole']);
+
         Route::get('edit/{id}', [UserController::class, 'editForm'])->name('user.edit');
         Route::post('edit/{id}', [UserController::class, 'saveEdit']);
     });
@@ -66,6 +69,8 @@ Route::any('logout', function () {
     return redirect(route('login'));
 });
 
-Route::any('forbidden', function () {
-    return "Bạn không có quyền truy cập vào đường dẫn này!";
-})->name('403');
+// Route::any('forbidden', function () {
+//     return "Bạn không có quyền truy cập vào đường dẫn này!";
+// })->name('403');
+
+Route::get('403', [UserController::class, 'page403'])->name('403');
